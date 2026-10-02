@@ -1,0 +1,9 @@
+export type TemplateId = 'minimal' | 'classic' | 'modern' | 'compact' | 'professional'
+export type DocumentSize = 'a4' | 'a5' | 'thermal' | 'custom'
+export type PaymentStatus = 'draft' | 'unpaid' | 'partial' | 'paid'
+export interface Business { businessName: string; logo: string; address: string; phone: string; email: string; website: string; taxNumber: string; registrationNumber: string; defaultFooter: string; paymentMethods: string }
+export interface Customer { name: string; phone: string; email: string; address: string; taxNumber: string }
+export interface ReceiptItem { id: string; name: string; description: string; flavour?: string; expiryDate?: string; quantity: number; unit: string; price: number; discount: number; tax: number; total: number }
+export interface Appearance { primaryColor: string; font: 'sans' | 'serif' | 'mono'; title: string; footer: string; showReceiptTitle?: boolean; showReceiptDetails?: boolean; showBusinessSection?: boolean; showBillingSection?: boolean; showBusinessContact: boolean; showCustomerContact: boolean; showItemDescription: boolean; showTerms: boolean; showPaymentSummary?: boolean; size: DocumentSize; customWidth: number; customHeight: number }
+export interface Receipt { id: string; receiptNumber: string; date: string; time: string; business: Business; customer: Customer; items: ReceiptItem[]; subtotal: number; discount: number; tax: number; additionalCharges: number; total: number; amountPaid: number; balance: number; paymentMethod: string; notes: string; terms: string; templateId: TemplateId; appearance: Appearance; status: PaymentStatus; createdAt: string; updatedAt: string }
+export interface AppSettings { id: 'settings'; currency: string; dateFormat: 'short' | 'long'; prefix: string; startingNumber: number; digits: number; nextNumber: number; defaultTemplate: TemplateId; defaultPaymentMethod: string; defaultTax: number; theme: 'light' | 'dark'; exportScale: number }
